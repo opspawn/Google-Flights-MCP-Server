@@ -85,11 +85,12 @@ Add the server to your MCP client's configuration file. Example for `cline_mcp_s
   }
 }
 ```
+ - **Note**: You may need to put the full path to the uv executable in the command field. You can get this by running `which uv` on MacOS/Linux or `where uv` on Windows.
 
-**Important:** Replace the paths in `command` and `args` with the absolute paths to your virtual environment's Python executable and the `server.py` script on your system.
 
 ## Notes
 
+*   This MCP is the fork that originally from [https://github.com/opspawn/Google-Flights-MCP-Server](https://github.com/opspawn/Google-Flights-MCP-Server)) which is modified to add new features and simplify the installation.
 *   This server bundles the `fast_flights` library (originally from [https://github.com/AWeirdDev/flights](https://github.com/AWeirdDev/flights)) for its core flight scraping functionality. Please refer to the included `LICENSE` file for its terms.
 *   Flight scraping can sometimes be unreliable or slow depending on Google Flights changes and network conditions. The tools include basic error handling.
 *   The `find_all_flights_in_range` tool can be resource-intensive as it checks many date combinations.
