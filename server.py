@@ -71,7 +71,8 @@ async def get_flights_on_date(
     date: str,
     adults: int = 1,
     seat_type: str = "economy",
-    return_cheapest_only: bool = False # Added parameter
+    return_cheapest_only: bool = False, # Added parameter
+    limit: Optional[int] = 10
 ) -> str:
     """
     Fetches available one-way flights for a specific date between two airports.
@@ -113,7 +114,7 @@ async def get_flights_on_date(
                 processed_flights = [flight_to_dict(cheapest_flight)]
                 result_key = "cheapest_flight" # Use a specific key for single result
             else:
-                processed_flights = [flight_to_dict(f) for f in result.flights]
+                processed_flights = [flight_to_dict(f) for f in result.flights[:limit]]
                 result_key = "flights" # Keep original key for list
 
             output_data = {
@@ -153,7 +154,8 @@ async def get_round_trip_flights(
     return_date: str,
     adults: int = 1,
     seat_type: str = "economy",
-    return_cheapest_only: bool = False # Added parameter
+    return_cheapest_only: bool = False, # Added parameter
+    limit: Optional[int] = 10
 ) -> str:
     """
     Fetches available round-trip flights for specific departure and return dates.
@@ -198,7 +200,7 @@ async def get_round_trip_flights(
                 processed_flights = [flight_to_dict(cheapest_flight)]
                 result_key = "cheapest_round_trip_option" # Use a specific key for single result
             else:
-                processed_flights = [flight_to_dict(f) for f in result.flights]
+                processed_flights = [flight_to_dict(f) for f in result.flights[:limit]]
                 result_key = "round_trip_options" # Keep original key for list
 
             # Note: The library might return combined round-trip options or separate legs.
@@ -243,7 +245,8 @@ async def find_all_flights_in_range( # Renamed function
     max_stay_days: Optional[int] = None,
     adults: int = 1,
     seat_type: str = "economy",
-    return_cheapest_only: bool = False # Added parameter
+    return_cheapest_only: bool = False, # Added parameter
+    limit: Optional[int] = 10
 ) -> str:
     """
     Finds available round-trip flights within a specified date range.
@@ -343,7 +346,7 @@ async def find_all_flights_in_range( # Renamed function
                     })
                 else:
                     # Store all flights for this pair
-                    flights_list = [flight_to_dict(f) for f in result.flights]
+                    flights_list = [flight_to_dict(f) for f in result.flights[:limit]]
                     results_data.append({
                         "departure_date": depart_date.strftime('%Y-%m-%d'),
                         "return_date": return_date.strftime('%Y-%m-%d'),

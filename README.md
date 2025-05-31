@@ -1,4 +1,4 @@
-# Google Flights MCP Server
+# Google Flights MCP
 
 This MCP server provides tools to interact with Google Flights data using the bundled `fast_flights` library.
 
@@ -17,29 +17,26 @@ Provides the following MCP tools:
 
 1.  **Clone the repository:**
     ```bash
-    git clone https://github.com/opspawn/Google-Flights-MCP-Server.git
+    git clone https://github.com/msr2903/google-flights-mcp.git
     cd Google-Flights-MCP-Server
     ```
-2.  **Create a virtual environment (recommended):**
+2.  **Create a virtual environment and install dependencies:**
     ```bash
-    python -m venv .venv
-    source .venv/bin/activate  # On Windows use `.venv\Scripts\activate`
+    uv venv
+    source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+    uv pip install -e .
     ```
-3.  **Install dependencies:**
-    ```bash
-    pip install -r requirements.txt
-    ```
-4.  **Install Playwright browsers (needed by `fast_flights`):**
+3.  **Install Playwright browsers (needed by `fast_flights`):**
     ```bash
     playwright install
     ```
 
 ## Running the Server
 
-You can run the server directly using Python:
+You can test the server with MCP Inspector by running:
 
 ```bash
-python server.py
+uv run server.py
 ```
 
 The server uses STDIO transport by default.
@@ -48,13 +45,37 @@ The server uses STDIO transport by default.
 
 Add the server to your MCP client's configuration file. Example for `cline_mcp_settings.json` or `claude_desktop_config.json`:
 
+-macOS
 ```json
 {
   "mcpServers": {
     "google-flights": {
-      "command": "/path/to/your/.venv/bin/python", // Use absolute path to venv python
+      "command": "uv",
       "args": [
-        "/absolute/path/to/flight_mcp_server/server.py" // Use absolute path to server script
+        "--directory",
+        "/ABSOLUTE/PATH/TO/PARENT/FOLDER/google-flights-mcp",
+        "run",
+        "server.py"
+      ],
+      "env": {},
+      "disabled": false,
+      "autoApprove": []
+    }
+    // ... other servers
+  }
+}
+```
+-Windows
+```json
+{
+  "mcpServers": {
+    "google-flights": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "C:\\ABSOLUTE\\PATH\\TO\\PARENT\\FOLDER\\google-flights-mcp",
+        "run",
+        "server.py"
       ],
       "env": {},
       "disabled": false,

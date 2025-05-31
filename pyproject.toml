@@ -1,0 +1,18 @@
+[project]
+name = "google-flights-mcp"
+version = "0.1.0"
+description = "A FastMCP server to search Flights with Google Flights."
+requires-python = ">=3.10"
+readme = "README.md"
+license = "MIT"
+
+dependencies = [
+    "mcp>=1.2.0",
+    "primp",
+    "protobuf",
+    "selectolax",
+    "playwright"
+]
+
+[tool.setuptools]
+py-modules = ["server"]
