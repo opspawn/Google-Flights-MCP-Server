@@ -7,11 +7,45 @@ This MCP server provides tools to interact with Google Flights data using the bu
 Provides the following MCP tools:
 
 *   **`get_flights_on_date`**: Fetches available one-way flights for a specific date between two airports.
-    *   Args: `origin` (str), `destination` (str), `date` (str, YYYY-MM-DD), `adults` (int, optional), `seat_type` (str, optional), `return_cheapest_only` (bool, optional, default `False`).
+    
+    | Argument       | Type     | Description                                                  | Default |
+    | -------------- | -------- | ------------------------------------------------------------ | ------- |
+    | origin         | str      | Origin airport code (e.g., "DEN")                            | N/A     |
+    | destination    | str      | Destination airport code (e.g., "LAX")                       | N/A     |
+    | date           | str      | Date to search in YYYY-MM-DD format                          | N/A     |
+    | adults         | int      | Number of adult passengers                                   | 1       |
+    | seat_type      | str      | Fare class (e.g., "economy" or "business")                   | "economy" |
+    | sort_cheapest  | bool     | Sort results by cheapest price if True                       | False   |
+    | stops          | int      | Number of stops to filter (0 for non-stop)                    | None    |
+    | limit          | int      | Maximum number of flights to return                           | 10      |
 *   **`get_round_trip_flights`**: Fetches available round-trip flights for specific departure and return dates.
-    *   Args: `origin` (str), `destination` (str), `departure_date` (str, YYYY-MM-DD), `return_date` (str, YYYY-MM-DD), `adults` (int, optional), `seat_type` (str, optional), `return_cheapest_only` (bool, optional, default `False`).
+    
+    | Argument       | Type     | Description                                                  | Default |
+    | -------------- | -------- | ------------------------------------------------------------ | ------- |
+    | origin         | str      | Origin airport code (e.g., "DEN")                            | N/A     |
+    | destination    | str      | Destination airport code (e.g., "LAX")                       | N/A     |
+    | departure_date | str      | Departure date in YYYY-MM-DD format                           | N/A     |
+    | return_date    | str      | Return date in YYYY-MM-DD format                              | N/A     |
+    | adults         | int      | Number of adult passengers                                   | 1       |
+    | seat_type      | str      | Fare class (e.g., "economy" or "business")                   | "economy" |
+    | sort_cheapest  | bool     | Sort results by cheapest price if True                       | False   |
+    | stops          | int      | Number of stops to filter (0 for non-stop)                    | None    |
+    | limit          | int      | Maximum number of flights to return                           | 10      |
 *   **`find_all_flights_in_range`**: Finds available round-trip flights within a specified date range. Can optionally return only the cheapest flight found for each date pair.
-    *   Args: `origin` (str), `destination` (str), `start_date_str` (str, YYYY-MM-DD), `end_date_str` (str, YYYY-MM-DD), `min_stay_days` (int, optional), `max_stay_days` (int, optional), `adults` (int, optional), `seat_type` (str, optional), `return_cheapest_only` (bool, optional, default `False`).
+    
+    | Argument       | Type     | Description                                                  | Default |
+    | -------------- | -------- | ------------------------------------------------------------ | ------- |
+    | origin         | str      | Origin airport code (e.g., "DEN")                            | N/A     |
+    | destination    | str      | Destination airport code (e.g., "LAX")                       | N/A     |
+    | start_date_str | str      | Start date of range in YYYY-MM-DD format                      | N/A     |
+    | end_date_str   | str      | End date of range in YYYY-MM-DD format                        | N/A     |
+    | min_stay_days  | int      | Minimum number of days for the stay                            | None    |
+    | max_stay_days  | int      | Maximum number of days for the stay                            | None    |
+    | adults         | int      | Number of adult passengers                                    | 1       |
+    | seat_type      | str      | Fare class (e.g., "economy" or "business")                    | "economy" |
+    | sort_cheapest  | bool     | Sort results by cheapest price for each pair if True          | False   |
+    | stops          | int      | Number of stops to filter (0 for non-stop)                     | None    |
+    | limit          | int      | Maximum number of flights to return per date pair             | 10      |
 
 ## Setup
 
